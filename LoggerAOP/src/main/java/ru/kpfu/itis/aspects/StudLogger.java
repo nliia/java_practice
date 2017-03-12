@@ -1,13 +1,12 @@
 package ru.kpfu.itis.aspects;
 
 import org.apache.log4j.Logger;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Aspect
-@Component
+@Component(value = "StudLogger")
 public class StudLogger {
     private static Logger log = Logger.getLogger(StudLogger.class.getName());
     private static final String POSITION = "student";
@@ -40,7 +39,7 @@ public class StudLogger {
     }
 
     @AfterThrowing(value = ("execution(* ru.kpfu.itis.components.Human.*())"), throwing = "e")
-    public void logAfterThrowinfException(Exception e) {
+    public void logAfterThrowingException(Exception e) {
         log.error("Occurred exception: " + e.getClass());
     }
 }

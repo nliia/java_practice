@@ -1,8 +1,8 @@
 package ru.kpfu.itis.components.impl;
 
 
-import org.springframework.stereotype.Component;
 import ru.kpfu.itis.components.Human;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 

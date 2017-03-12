@@ -1,15 +1,16 @@
 package ru.kpfu.itis;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.AbstractApplicationContext;
 import ru.kpfu.itis.components.Human;
-import ru.kpfu.itis.config.JavaConfig;
+import ru.kpfu.itis.components.impl.Student;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
     public static void main(String[] args) {
-        AbstractApplicationContext context = new AnnotationConfigApplicationContext(JavaConfig.class);
+//        AbstractApplicationContext context = new AnnotationConfigApplicationContext(JavaConfig.class);
+//        Human student = context.getBean(Human.class);
+        ApplicationContext context = new ClassPathXmlApplicationContext("app-context.xml");
         Human student = context.getBean(Human.class);
-
         try {
             System.out.println(student.getId());
             System.out.println(student.getPosition());

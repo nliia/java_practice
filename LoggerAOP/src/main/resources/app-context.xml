@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <context:component-scan base-package="ru.kpfu.itis"/>
+    <context:annotation-config></context:annotation-config>
+
+    <aop:config>
+        <aop:aspect id="log" ref="StudLogger">
+            <aop:pointcut id="getId"
+                          expression="execution(* ru.kpfu.itis.components.Human.getId())"/>
+            <aop:before pointcut-ref="getId" method="logBeforeGetId"/>
+            <aop:after pointcut-ref="getId" method="logAfterGetId"/>
+
+            <aop:around pointcut="execution(* ru.kpfu.itis.components.Human.getAge())" method="logAroundGetAge"/>
+
+            <aop:after-returning pointcut="execution(* ru.kpfu.itis.components.Human.getPosition())"
+                                 method="logAfterReturningPosition" returning="student"/>
+
+            <aop:after-throwing pointcut="execution(* ru.kpfu.itis.components.Human.*())"
+                                throwing="e" method="logAfterThrowingException"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
