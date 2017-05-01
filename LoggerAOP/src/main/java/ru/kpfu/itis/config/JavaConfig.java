@@ -6,7 +6,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @EnableAspectJAutoProxy
 @Configuration
-@ComponentScan("com")
+@ComponentScan("ru.kpfu.itis")
 public class JavaConfig {
 }
 
